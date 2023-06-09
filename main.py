@@ -1,5 +1,7 @@
 from store import Store
 from products import Product
+from products import NonStockedProduct
+from products import LimitedProduct
 
 
 def start(store):
