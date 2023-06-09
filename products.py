@@ -51,9 +51,9 @@ class NonStockedProduct(Product):
 
 
 class LimitedProduct(Product):
-    def __init__(self, name, price, quantity_limit):
-        super().__init__(name, price, quantity=quantity_limit)
-        self.quantity_limit = quantity_limit
+    def __init__(self, name, price, quantity, maximum):
+        super().__init__(name, price, quantity)
+        self.quantity_limit = maximum
 
     def set_quantity(self, quantity):
         if quantity > self.quantity_limit:
@@ -62,4 +62,3 @@ class LimitedProduct(Product):
 
     def show(self) -> str:
         return f"{self.name} - Limited Product (Max quantity: {self.quantity_limit})"
-
