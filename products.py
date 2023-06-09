@@ -40,3 +40,26 @@ class Product:
 
         self.quantity -= quantity
         return self.price * quantity
+
+
+class NonStockedProduct(Product):
+    def __init__(self, name, price):
+        super().__init__(name, price, quantity=0)
+
+    def show(self) -> str:
+        return f"{self.name} - Non Stocked Product"
+
+
+class LimitedProduct(Product):
+    def __init__(self, name, price, quantity_limit):
+        super().__init__(name, price, quantity=quantity_limit)
+        self.quantity_limit = quantity_limit
+
+    def set_quantity(self, quantity):
+        if quantity > self.quantity_limit:
+            raise Exception("Quantity exceeds the limit for this product.")
+        super().set_quantity(quantity)
+
+    def show(self) -> str:
+        return f"{self.name} - Limited Product (Max quantity: {self.quantity_limit})"
+
